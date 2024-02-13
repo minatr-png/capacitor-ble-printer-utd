@@ -14,7 +14,6 @@ Add the following to your AndroidManifest.xml
 ```
 <uses-permission android:name="android.permission.BLUETOOTH"/>
 <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-
 ```
 
 ## Usage
