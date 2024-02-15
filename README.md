@@ -14,6 +14,8 @@ Add the following to your AndroidManifest.xml
 ```
 <uses-permission android:name="android.permission.BLUETOOTH"/>
 <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
 ```
 
 ## Usage
@@ -46,13 +48,22 @@ ZPLPrinter.print(printerOpts).then(_ => {
 
 <docgen-index>
 
-* [`print(...)`](#print)
-* [`listenPrinters()`](#listenprinters)
-* [`openBluetoothSettings()`](#openbluetoothsettings)
-* [`enableBluetooth()`](#enablebluetooth)
-* [`getStatusPrinter(...)`](#getstatusprinter)
-* [`getZPLFromImage(...)`](#getzplfromimage)
-* [Interfaces](#interfaces)
+- [capacitor-ble-printer2](#capacitor-ble-printer2)
+  - [Install](#install)
+  - [Android](#android)
+  - [Usage](#usage)
+  - [API](#api)
+    - [print(...)](#print)
+    - [listenPrinters()](#listenprinters)
+    - [openBluetoothSettings()](#openbluetoothsettings)
+    - [enableBluetooth()](#enablebluetooth)
+    - [getStatusPrinter(...)](#getstatusprinter)
+    - [getZPLFromImage(...)](#getzplfromimage)
+    - [Interfaces](#interfaces)
+      - [PrinterOptions](#printeroptions)
+      - [BluetoothDevices](#bluetoothdevices)
+      - [StatusPrinterOptions](#statusprinteroptions)
+      - [ZPLConverterOptions](#zplconverteroptions)
 
 </docgen-index>
 
