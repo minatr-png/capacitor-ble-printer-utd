@@ -40,7 +40,6 @@ import com.zebra.sdk.printer.ZebraPrinter;
 import com.zebra.sdk.printer.ZebraPrinterFactory;
 import com.zebra.sdk.printer.ZebraPrinterLanguageUnknownException;
 import com.zebra.sdk.printer.ZebraPrinterLinkOs;
-import com.zebra.sdk.printer.discovery.BluetoothDiscoverer;
 import com.zebra.sdk.printer.discovery.DiscoveredPrinter;
 import com.zebra.sdk.printer.discovery.DiscoveryHandler;
 
@@ -49,7 +48,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
+
 
 @CapacitorPlugin(
         name = "ZPLPrinter",
@@ -87,9 +89,9 @@ public class ZPLPrinterPlugin extends Plugin implements DiscoveryHandler {
            String base64Image = call.getString("base64Image");
            Boolean addHeaderFooter = call.getBoolean("addHeaderFooter");    	//Want to add header/footer ZPL code or not
            Integer blacknessPercentage = call.getInt("blacknessPercentage");
-           getZPLfromImage(call, base64Image, blacknessPercentage ,addHeaderFooter);
+           getZPLfromImage(call, base64Image, blacknessPercentage , Boolean.TRUE.equals(addHeaderFooter));
        }catch (Exception e){
-           Log.e(LOG_TAG, e.getMessage());
+           Log.e(LOG_TAG, Objects.requireNonNull(e.getMessage()));
            e.printStackTrace();
        }
     }
@@ -101,7 +103,7 @@ public class ZPLPrinterPlugin extends Plugin implements DiscoveryHandler {
             String printText = call.getString("printText");
             sendData(call, MACAddress, printText);
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            Log.e(LOG_TAG, Objects.requireNonNull(e.getMessage()));
             e.printStackTrace();
             call.reject(e.getMessage());
         }
@@ -127,7 +129,7 @@ public class ZPLPrinterPlugin extends Plugin implements DiscoveryHandler {
             String macAddress = call.getString("macAddress");
             getPrinterStatus(call ,macAddress);
         } catch (IOException e){
-            Log.e(LOG_TAG, e.getMessage());
+            Log.e(LOG_TAG, Objects.requireNonNull(e.getMessage()));
             e.printStackTrace();
         }
     }
@@ -165,13 +167,13 @@ public class ZPLPrinterPlugin extends Plugin implements DiscoveryHandler {
                     // Open the connection - physical connection is established here.
                     thePrinterConn.open();
 
-                    SGD.SET("device.languages", "zpl", thePrinterConn);
+                    //SGD.SET("device.languages", "zpl", thePrinterConn);
                     thePrinterConn.write(msg.getBytes());
 
                     // Close the insecure connection to release resources.
                     thePrinterConn.close();
 
-                    Looper.myLooper().quit();
+                    Objects.requireNonNull(Looper.myLooper()).quit();
                     call.resolve();
 
                     // } else {
@@ -225,11 +227,11 @@ public class ZPLPrinterPlugin extends Plugin implements DiscoveryHandler {
             Log.e(LOG_TAG, "Connection exception: " + e.getMessage());
 
             //The connection between the printer & the device has been lost.
-            if (e.getMessage().toLowerCase().contains("broken pipe")) {
+            if (Objects.requireNonNull(e.getMessage()).toLowerCase(Locale.ROOT).contains("broken pipe")) {
                 call.reject("The connection between the device and the printer has been lost. Please try again.");
 
                 //No printer found via Bluetooth, -1 return so that new printers are searched for.
-            } else if (e.getMessage().toLowerCase().contains("socket might closed")) {
+            } else if (e.getMessage().toLowerCase(Locale.ROOT).contains("socket might closed")) {
                 int SEARCH_NEW_PRINTERS = -1;
                 call.reject(String.valueOf(SEARCH_NEW_PRINTERS));
             } else {
@@ -263,7 +265,7 @@ public class ZPLPrinterPlugin extends Plugin implements DiscoveryHandler {
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
         ZebraImageAndroid zebraimage = new ZebraImageAndroid(decodedByte);
-        String base64Dithered = new String(zebraimage.getDitheredB64EncodedPng(), "UTF-8");
+        String base64Dithered = new String(zebraimage.getDitheredB64EncodedPng(), "utf-8");
 
         byte[] ditheredB64Png = Base64.decode(base64Dithered, Base64.DEFAULT);
         Bitmap ditheredPng = BitmapFactory.decodeByteArray(ditheredB64Png, 0, ditheredB64Png.length);

@@ -3,6 +3,7 @@ package com.capacitor.bleprinter;
 import android.graphics.Bitmap;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class ZPLConverter {
@@ -112,9 +113,9 @@ public class ZPLConverter {
     private String fourByteBinary(String binaryStr) {
         int decimal = Integer.parseInt(binaryStr, 2);
         if (decimal > 15) {
-            return Integer.toString(decimal, 16).toUpperCase();
+            return Integer.toString(decimal, 16).toUpperCase(Locale.ROOT);
         } else {
-            return "0" + Integer.toString(decimal, 16).toUpperCase();
+            return "0" + Integer.toString(decimal, 16).toUpperCase(Locale.ROOT);
         }
     }
 
