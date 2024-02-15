@@ -170,6 +170,9 @@ public class ZPLPrinterPlugin extends Plugin implements DiscoveryHandler {
                     //SGD.SET("device.languages", "zpl", thePrinterConn);
                     thePrinterConn.write(msg.getBytes());
 
+                    // Make sure the data got to the printer before closing the connection
+                    Thread.sleep(500);
+
                     // Close the insecure connection to release resources.
                     thePrinterConn.close();
 
