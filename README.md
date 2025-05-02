@@ -1,11 +1,11 @@
-# capacitor-ble-printer2
+# capacitor-ble-printer-utd
 
-Capacitor plugin for Zebra printers with Bluetooth.
+Capacitor plugin for Zebra printers with Bluetooth, up to date with latest capacitor versions.
 
 ## Install
 
 ```bash
-npm install capacitor-ble-printer2
+npm install capacitor-ble-printer-utd
 npx cap sync
 ```
 
@@ -22,7 +22,7 @@ Add the following to your AndroidManifest.xml
 You can send data in ZPL Zebra
 
 ```ts
-import { ZPLPrinter } from 'capacitor-ble-printer2'
+import { ZPLPrinter } from 'capacitor-ble-printer-utd'
 
 //Bounded Devices
 ZPLPrinter.listenPrinters().then(value => {
@@ -48,22 +48,13 @@ ZPLPrinter.print(printerOpts).then(_ => {
 
 <docgen-index>
 
-- [capacitor-ble-printer2](#capacitor-ble-printer2)
-  - [Install](#install)
-  - [Android](#android)
-  - [Usage](#usage)
-  - [API](#api)
-    - [print(...)](#print)
-    - [listenPrinters()](#listenprinters)
-    - [openBluetoothSettings()](#openbluetoothsettings)
-    - [enableBluetooth()](#enablebluetooth)
-    - [getStatusPrinter(...)](#getstatusprinter)
-    - [getZPLFromImage(...)](#getzplfromimage)
-    - [Interfaces](#interfaces)
-      - [PrinterOptions](#printeroptions)
-      - [BluetoothDevices](#bluetoothdevices)
-      - [StatusPrinterOptions](#statusprinteroptions)
-      - [ZPLConverterOptions](#zplconverteroptions)
+* [`print(...)`](#print)
+* [`listenPrinters()`](#listenprinters)
+* [`openBluetoothSettings()`](#openbluetoothsettings)
+* [`enableBluetooth()`](#enablebluetooth)
+* [`getStatusPrinter(...)`](#getstatusprinter)
+* [`getZPLFromImage(...)`](#getzplfromimage)
+* [Interfaces](#interfaces)
 
 </docgen-index>
 
