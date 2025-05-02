@@ -1,6 +1,6 @@
 {
   "name": "capacitor-ble-printer-utd",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "ble printer up to date",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
