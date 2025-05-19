@@ -1,6 +1,6 @@
 {
   "name": "capacitor-ble-printer-utd",
-  "version": "7.0.1",
+  "version": "7.0.3",
   "description": "ble printer up to date",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -13,7 +13,7 @@
     "android/build.gradle",
     "dist/",
     "ios/Plugin/",
-    "CapacitorBlePrinter.podspec"
+    "CapacitorBlePrinterUtd.podspec"
   ],
   "author": "Lim CT",
   "license": "MIT",
